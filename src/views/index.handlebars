@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-COMMERCE PRODUCTS</title>
+</head>
+<body>
+    <div class="allproducts">
+    {{#each products}}
+        <ol>
+            <li>
+            <h3>{{ this.title }}</h3>
+            </li>
+            <li>
+            <p>{{ this.description }}</p>
+            </li>
+            <li>
+            Code: <p>{{ this.code }}</p>
+            Price: <p>$ {{ this.price }}</p> 
+            Stock: <p>{{ this.stock }}</p> 
+            </li>
+            <li>
+            Category: <p>{{ this.category }}</p>
+            </li>
+            <button>ADD TO CART</button>
+        </ol>
+    {{/each}}
+    </div>
+</body>
+</html>
