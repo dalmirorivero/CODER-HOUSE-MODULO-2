@@ -20,13 +20,13 @@ document.getElementById('login').addEventListener('click', async (event) => {
         alert (data.message);  
         window.location.href = '/api/products'; 
         } else {
-          alert ('Inicio de sesión fallido.');
+          alert ('Login failed');
         }
         } else {
-          alert ('Error en la solicitud.');
+          alert ('Request failed');
         }
       } catch (error) {
         console.log(error);
-        alert ('Error en la solicitud.');
+        alert ('Request failed');
       }
     });

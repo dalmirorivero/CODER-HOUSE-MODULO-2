@@ -25,6 +25,6 @@ document.getElementById('register').addEventListener('submit', async (event) => 
       }
     } catch (error) {
         console.error('Error:', error);
-        alert('Error al registrar el usuario');
+        alert('Failed to register user');
       }     
   });

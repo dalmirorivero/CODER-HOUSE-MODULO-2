@@ -1,12 +1,14 @@
 // IMPORTACIONES
 
 import express from 'express';
+import passport from 'passport';
 import __dirname from './utils.js';
 import MongoStore from 'connect-mongo';
 import handlebars from 'express-handlebars';
 import expressSession from 'express-session';
-import indexRouter from './routes/index.router.js'
-import 'dotenv/config.js'
+import indexRouter from './routes/index.router.js';
+import inicializePassport from './middlewares/passport.js';
+import 'dotenv/config.js';
 import './config/database.js';
 
 // SERVIDOR
@@ -29,6 +31,13 @@ app.use(expressSession({
     resave: true,
     saveUninitialized: true
 }));
+
+// PASSPORT 
+
+inicializePassport()
+
+app.use(passport.initialize())
+app.use(passport.session())
 
 // HANDLEBARS
 

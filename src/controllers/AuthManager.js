@@ -1,49 +1,91 @@
 import User from '../models/user.js';
 
 const authManager = {
-
+// REGISTRO
 registerUser: async (req, res, next) => {
     try {
         let one = await User.create(req.body)
         return res.status(201).json({
             success: true,
-            message: 'user registered',
+            message: 'New user registered.',
             user_id: one._id
         })
     } catch (error) {
         next (error)
     }
 },
+// VISTA DEL REGISTRO
 newUser: (req, res) => {
     res.render('register'); 
 },
+// INICIO DE SESION
 logIn: async (req, res, next) => {
-    try{
-        req.session.mail = req.body.mail
-        let one = await User.findOne({mail: req.body.mail})
+    try {
+        req.session.mail = req.body.mail;
+        let one = await User.findOne({ mail : req.body.mail })
         req.session.role = one.role
         return res.status(200).json({
             session: req.session,
-            message: req.session.mail + ' inicio sesion correctamente.'
+            message: req.session.mail + ' logged in successfully.'
     })
     } catch (error) {
         next(error)
     }
 },
+// VISTA DEL INICIO DE SESION
 signIn: (req, res) => {
     res.render('signin'); 
 },
-logOut: async (req,res, next) => {
-    try{
+// CIERRE DE SESION
+logOut: async (req, res, next) => {
+    try {
         req.session.destroy()
         return res.status(200).json({
             succes:true,
-            message: 'El usuario cerro sesion.',
+            message: 'User logged out.',
             dataSession: req.session
         })
-    }
-    catch (error){
+    } catch (error) {
         next(error)
+    }
+},
+// REGISTRO PASSPORT
+signUp: async (req, res, next) => {
+    try {
+        return res.status(201).json({
+            succes: true,
+            message: 'New user registered.',
+            user_id: req.user._id
+        })
+    } catch (error) {
+        next(error)
+    }
+},
+// INICIO DE SESION PASSPORT
+logOn: async (req, res, next) => {
+    try {
+        req.session.mail = req.body.mail;
+        req.session.role = req.user.role;
+        return res.status(200).json({
+            user: req.user,
+            message: req.session.mail + ' logged in successfully.',
+            token: req.session.token
+        })
+    } catch (error) {
+        next(error)
+    }
+},
+// INICIO DE SESION GITHUB
+callback: (req, res, next) => {
+    try {
+        req.session.mail = req.user.mail;
+        req.session.role = req.user.role;
+        return res.status(200).json({
+            succes: true,
+            user: req.user
+        })
+    } catch (error) {
+        next (error) 
     }
 }
 };

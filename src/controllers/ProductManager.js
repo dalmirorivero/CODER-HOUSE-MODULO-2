@@ -1,7 +1,6 @@
-import Product from "../models/product.js";
+import Product from '../models/product.js';
 
 const productManager = {
-
 // CREATE 
 createProduct: async (req, res) => {
     try {

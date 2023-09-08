@@ -4,7 +4,7 @@ export default async function (req, res, next){
     try {
         const {mail, password} = req.body
         let one = await User.findOne({ mail })
-        if (one && one.password === password){
+        if (one){
             next ()
         } else{
             return res.status(401).json({
@@ -17,4 +17,4 @@ export default async function (req, res, next){
     } catch (error) {
         next(error)
     }
-}
+};
