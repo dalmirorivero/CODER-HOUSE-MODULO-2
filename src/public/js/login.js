@@ -7,7 +7,7 @@ document.getElementById('login').addEventListener('click', async (event) => {
     const password = document.getElementById('password').value;
   
     try {
-      const response = await fetch('/api/auth/login', {
+      const response = await fetch('/api/auth/passport/login', {
         method: 'POST',
         headers: { 'Content-Type' : 'application/json' },
         body: JSON.stringify({ mail, password })
@@ -16,7 +16,9 @@ document.getElementById('login').addEventListener('click', async (event) => {
       const data = await response.json();
 
       if (response.ok) {
-        if (data.session) {
+        if (data) {
+        console.log(data)
+        //localStorage.setItem('token', data.token)
         alert (data.message);  
         window.location.href = '/api/products'; 
         } else {

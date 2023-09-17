@@ -4,6 +4,7 @@ import express from 'express';
 import passport from 'passport';
 import __dirname from './utils.js';
 import MongoStore from 'connect-mongo';
+import cookieParser from 'cookie-parser';
 import handlebars from 'express-handlebars';
 import expressSession from 'express-session';
 import indexRouter from './routes/index.router.js';
@@ -22,6 +23,7 @@ console.log('Server ready')});
 app.use(express.json());
 app.use(express.urlencoded ({extended: true}));
 app.use(express.static((`${__dirname}/public`)));
+app.use(cookieParser(process.env.SECRETCOOKIE));
 app.use(expressSession({
     store: MongoStore.create({
         mongoUrl:process.env.DBURI,
@@ -35,7 +37,6 @@ app.use(expressSession({
 // PASSPORT 
 
 inicializePassport()
-
 app.use(passport.initialize())
 app.use(passport.session())
 

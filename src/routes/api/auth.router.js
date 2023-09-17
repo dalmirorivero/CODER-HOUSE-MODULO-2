@@ -19,7 +19,7 @@ authRouter.post('/register', is_form_ok, is_8_char, create_hash, authManager.reg
 // INICIO DE SESION ( http://localhost:8080/api/auth/login/ )
 authRouter.post('/login', is_8_char, is_valid_user, is_valid_password, authManager.logIn);
 // CIERRE DE SESION ( http://localhost:8080/api/auth/logout/ )
-authRouter.post('/logout', authManager.logOut);
+authRouter.post('/logout', passport.authenticate('jwt'), authManager.logOut);
 // IMPLEMENTACION DE PASSPORT EN EL REGISTRO ( http://localhost:8080/api/auth/passport/register/ )
 authRouter.post('/passport/register', is_form_ok, is_8_char, create_hash, passport.authenticate('register'), authManager.signUp);
 // IMPLEMENTACION DE PASSPORT EN EL LOGIN ( http://localhost:8080/api/auth/passport/login/ )
