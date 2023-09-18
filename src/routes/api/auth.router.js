@@ -28,4 +28,5 @@ authRouter.post('/passport/login', is_8_char, passport.authenticate('login'), is
 authRouter.get('/github', passport.authenticate('github', { scope: ['user:mail'] }), (req, res) => {});
 authRouter.get('/github/callback', passport.authenticate('github', {}), authManager.callback);
 
+
 export default authRouter;
