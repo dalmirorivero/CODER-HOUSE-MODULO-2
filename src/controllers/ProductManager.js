@@ -1,4 +1,4 @@
-import Product from '../models/product.js';
+import Product from '../dao/models/product.js';
 
 const productManager = {
 // CREATE 

@@ -5,7 +5,8 @@ const collection = 'carts';
 const schema = new Schema({
     products: [{
         product: {type: Schema.Types.ObjectId, ref: 'Products'},
-        quantity: {type: Number}
+        quantity: {type: Number, default: 1},
+        state: {type: String, enum: ['pending', 'paid', 'delivered'], default: 'pending'}
     }]
     ,
     user: {type: Schema.Types.ObjectId, ref: 'User', required: true}

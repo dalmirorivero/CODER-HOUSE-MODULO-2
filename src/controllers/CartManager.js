@@ -1,5 +1,5 @@
-import Cart from '../models/cart.js';
-import Product from '../models/product.js';
+import Cart from '../dao/models/cart.js';
+import Product from '../dao/models/product.js';
 
 const cartManager = {
   // CREATE

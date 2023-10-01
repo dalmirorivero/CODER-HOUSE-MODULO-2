@@ -1,4 +1,4 @@
-import User from '../models/user.js';
+import User from '../db/models/user.js';
 import jwt from 'jsonwebtoken';
 
 export default (req, res, next) => {

@@ -7,6 +7,7 @@ import MongoStore from 'connect-mongo';
 import cookieParser from 'cookie-parser';
 import handlebars from 'express-handlebars';
 import expressSession from 'express-session';
+import MVCRouter from './routes/mvc.router.js'; 
 import indexRouter from './routes/index.router.js';
 import inicializePassport from './middlewares/passport.js';
 import 'dotenv/config.js';
@@ -36,9 +37,9 @@ app.use(expressSession({
 
 // PASSPORT 
 
-inicializePassport()
-app.use(passport.initialize())
-app.use(passport.session())
+inicializePassport();
+app.use(passport.initialize());
+app.use(passport.session());
 
 // HANDLEBARS
 
@@ -49,3 +50,8 @@ app.set('view engine', 'handlebars');
 // ENDPOINT PRINCIPAL
 
 app.use('/api', indexRouter);
+
+// ENDPOINT PRINCIPAL MVC
+
+const router = new MVCRouter(); 
+app.use('/mvc', router.getRouter()); 

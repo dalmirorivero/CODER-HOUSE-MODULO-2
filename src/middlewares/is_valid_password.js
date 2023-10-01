@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs';
-import User from '../models/user.js';
+import User from '../dao/models/user.js';
 
 export default async function (req, res, next){
     let passwordForm = req.body.password

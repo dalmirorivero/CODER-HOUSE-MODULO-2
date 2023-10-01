@@ -1,5 +1,5 @@
 import passport from 'passport';
-import User from '../models/user.js';
+import User from '../dao/models/user.js';
 import { Strategy } from 'passport-local';
 import GHStrategy from 'passport-github2';
 import jwt from 'passport-jwt';

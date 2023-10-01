@@ -1,4 +1,4 @@
-import User from "../models/user.js"
+import User from "../dao/models/user.js"
 
 export default async function (req, res, next){
     try {
